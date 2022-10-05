@@ -9,8 +9,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class EmployeeController {
-
-
     @GetMapping({"empleado/lista", "empleado"})
     public String listEmployee(Model model, @RequestParam(name = "search",required = false) String search, @RequestParam(name = "order", required = false) Integer order, RedirectAttributes attributes){
 
