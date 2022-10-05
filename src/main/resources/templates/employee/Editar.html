@@ -28,26 +28,29 @@
           <input type="hidden" th:field="*{commissionPct}" />
           <input type="hidden" th:field="*{managerId}" />
           <label for="nombre" class="form-label">Nombre</label>
-          <input th:field="*{firstName}" type="text" class="form-control" name="nombre" id="nombre">
-          <!--div class="invalid-feedback" th:if="${#fields.hasErrors('empleado.nombre')}"
-               th:errors="${empleado.nombre}">
+          <input th:field="*{firstName}" type="text" class="form-control" name="nombre" id="nombre"
+                 th:classappend="${#fields.hasErrors('firstName')?'is-invalid':''}">
+          <div class="invalid-feedback" th:if="${#fields.hasErrors('empleado.firstName')}"
+               th:errors="${empleado.firstName}">
             Please choose a username.
-          </div-->
+          </div>
         </div>
         <div class="mb-3">
           <label for="apellido" class="form-label">Apellido</label>
-          <input th:field="*{lastName}" type="text" class="form-control" name="nombre" id="apellido">
-          <!--div class="invalid-feedback" th:if="${#fields.hasErrors('empleado.apellido')}"
-               th:errors="${empleado.apellido}">
+          <input th:field="*{lastName}" type="text" class="form-control" name="nombre" id="apellido"
+                 th:classappend="${#fields.hasErrors('lastName')?'is-invalid':''}">
+          <div class="invalid-feedback" th:if="${#fields.hasErrors('empleado.lastName')}"
+               th:errors="${empleado.lastName}">
             Please choose a username.
-          </div-->
+          </div>
         </div>
         <label for="correo" class="form-label">Correo</label>
-        <input th:field="*{email}" type="email" class="form-control" name="correo" id="correo">
-        <!--div class="invalid-feedback" th:if="${#fields.hasErrors('empleado.correo')}"
-             th:errors="${empleado.correo}">
+        <input th:field="*{email}" type="email" class="form-control" name="correo" id="correo"
+               th:classappend="${#fields.hasErrors('email')?'is-invalid':''}">
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('empleado.email')}"
+             th:errors="${empleado.email}">
           Please choose a username.
-        </div-->
+        </div>
       </div>
       <div class="mb-3">
         <label for="departamentoId" class="form-label">Departamento</label>
@@ -56,6 +59,10 @@
                   th:selected="${department.departmentId==empleado.getDepartmentId()}"
                   th:value="${department.departmentId}" th:text="${department.departmentName}"></option>
         </select>
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('empleado.departmentId')}"
+             th:errors="${empleado.departmentId}">
+          Please choose a username.
+        </div>
       </div>
 
       <div class="mb-3">
