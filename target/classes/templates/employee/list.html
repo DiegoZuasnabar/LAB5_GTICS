@@ -64,11 +64,11 @@
           <tbody>
 
           <tr th:each="empleado : ${listaEmpleado}">
-            <td th:text="${empleado.id}" style="text-align: center"></td>
-            <td th:text="${empleado.nombre}" style="text-align: center"></td>
-            <td th:text="${empleado.apellido}" style="text-align: center"></td>
-            <td th:text="${empleado.correo}" style="text-align: center"></td>
-            <td th:text="${empleado.salario}" style="text-align: center"></td>
+            <td th:text="${empleado.employeeId}" style="text-align: center"></td>
+            <td th:text="${empleado.firstName}" style="text-align: center"></td>
+            <td th:text="${empleado.lastName}" style="text-align: center"></td>
+            <td th:text="${empleado.email}" style="text-align: center"></td>
+            <td th:text="${empleado.salary}" style="text-align: center"></td>
             <td><a class="btn btn-outline-info" th:href="@{}" data-toggle="tooltip" data-placement="bottom" title="Editar"></a></td>
             <td><a class="btn btn-outline-danger" th:href="@{}" data-toggle="tooltip" data-placement="bottom" title="Borrar"></a></td>
           </tr>
