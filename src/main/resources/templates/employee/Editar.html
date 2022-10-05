@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+          crossorigin="anonymous"></script>
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+  <title>Información del Empleado</title>
+</head>
+<body>
+<main>
+  <div class="container px-4 py-5">
+    <h1 class="pb-2 mb-3 border-bottom">Información del Empleado</h1>
+    <form method="post" th:action="@{'/Empleado/save'}" class="mt-2">
+      <div class="mb-3">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input th:field="${empleado.nombre}" type="text" class="form-control" name="nombre" id="nombre"
+                 th:classappend="${#fields.hasErrors('empleado.nombre')?'is-invalid':''}">
+          <div class="invalid-feedback" th:if="${#fields.hasErrors('empleado.nombre')}"
+               th:errors="${empleado.nombre}">
+            Please choose a username.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="apellido" class="form-label">Apellido</label>
+          <input th:field="${empleado.apellido}" type="text" class="form-control" name="nombre" id="apellido"
+                 th:classappend="${#fields.hasErrors('empleado.apellido')?'is-invalid':''}">
+          <div class="invalid-feedback" th:if="${#fields.hasErrors('empleado.apellido')}"
+               th:errors="${empleado.apellido}">
+            Please choose a username.
+          </div>
+        </div>
+        <label for="correo" class="form-label">Correo</label>
+        <input th:field="${empleado.correo}" type="email" class="form-control" name="correo" id="correo"
+               th:classappend="${#fields.hasErrors('empleado.correo')?'is-invalid':''}">
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('empleado.correo')}"
+             th:errors="${empleado.correo}">
+          Please choose a username.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="departamentoId" class="form-label">Departamento</label>
+        <select name="departamentoId" class="form-select" id="departamentoId">
+          <option th:each="mascota : ${listaEmpleados.departamento}"
+                  th:value="${empleado.departamentoId}"></option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="trabajoID" class="form-label">Trabajo</label>
+        <select name="trabajoID" class="form-select" id="trabajoID">
+          <option th:each="mascota : ${listaEmpleados.trabajo}"
+                  th:value="${empleado.trabajoID}"></option>
+        </select>
+      </div>
+        <label for="salario" class="form-label">Salario</label>
+        <input th:field="${empleado.salario}" type="number" class="form-control" name="observaciones" id="salario"
+               th:classappend="${#fields.hasErrors('duenho.salario')?'is-invalid':''}">
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('duenho.salario')}"
+             th:errors="${empeleado.salario}">
+          Please choose a username.
+        </div>
+      <br><br>
+
+      <a th:href="@{'/empleado/listar'}" class="btn btn-danger">Cancelar</a>
+      <button type="submit" class="btn btn-primary">Registrar</button>
+
+
+    </form>
+  </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
