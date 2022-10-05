@@ -32,7 +32,7 @@
         <div class="row">
           <div class="col-10"><h2>Lista de Empleados</h2></div>
           <div class="col-2 text-right" >
-            <a class="btn btn-outline-info" href="...">+ Añadir</a>
+            <a class="btn btn-outline-info" th:href="@{'/empleado/nuevo'}">+ Añadir</a>
           </div>
         </div>
 
@@ -46,14 +46,7 @@
           <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Nombre
-                <a class="text-reset"  href="">
-                <span ></span>
-                </a>
-                <a class="text-reset"  href="">
-                <span ></span>
-                </a>
-            </th>
+            <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Correo</th>
             <th scope="col">Salario</th>
@@ -69,8 +62,8 @@
             <td th:text="${empleado.lastName}" style="text-align: center"></td>
             <td th:text="${empleado.email}" style="text-align: center"></td>
             <td th:text="${empleado.salary}" style="text-align: center"></td>
-            <td><a class="btn btn-outline-info" th:href="@{}" data-toggle="tooltip" data-placement="bottom" title="Editar"></a></td>
-            <td><a class="btn btn-outline-danger" th:href="@{}" data-toggle="tooltip" data-placement="bottom" title="Borrar"></a></td>
+            <td><a class="btn btn-outline-info" th:href="@{'/empleado/info?id='+${empleado.employeeId}}" data-toggle="tooltip" data-placement="bottom" title="Editar"></a></td>
+            <td><a class="btn btn-outline-danger" th:href="@{'/empleado/eliminar?id='+${empleado.employeeId}}" data-toggle="tooltip" data-placement="bottom" title="Borrar"></a></td>
           </tr>
 
           </tbody>
