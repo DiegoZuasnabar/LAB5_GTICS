@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Controller
@@ -79,6 +80,7 @@ public class EmployeeController {
     @GetMapping(value = "/nuevo")
     public String editNewEmpleado(Model model,
                                   @ModelAttribute("empleado")EmployeesEntity empleado){
+        empleado.setSalary(new BigDecimal("2000.00"));
 
         model.addAttribute("empleado", empleado);
         model.addAttribute("listaDepartments", departmentRepository.findAll());
