@@ -67,8 +67,8 @@
             <td th:text="${empleado.lastName}" style="text-align: center"></td>
             <td th:text="${empleado.email}" style="text-align: center"></td>
             <td th:text="${empleado.salary}" style="text-align: center"></td>
-            <td><a class="btn btn-outline-info" th:href="@{'/empleado/edicion?id='+${empleado.employeeId}}" data-toggle="tooltip" data-placement="bottom" title="Editar"></a></td>
-            <td><a class="btn btn-outline-danger" th:href="@{'/empleado/eliminar?id='+${empleado.employeeId}}" data-toggle="tooltip" data-placement="bottom" title="Borrar"></a></td>
+            <td><a class="btn btn-outline-info" th:href="@{'/empleado/edicion?id='+${empleado.employeeId}}" data-toggle="tooltip" data-placement="bottom" title="Editar">&#128295;</a></td>
+            <td><a class="btn btn-outline-danger" th:href="@{'/empleado/eliminar?id='+${empleado.employeeId}}" data-toggle="tooltip" data-placement="bottom" title="Borrar">&#128465;</a></td>
         </tr>
 
         </tbody>
