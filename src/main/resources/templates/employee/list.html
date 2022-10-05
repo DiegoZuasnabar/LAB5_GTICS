@@ -61,19 +61,19 @@
         </thead>
         <tbody>
 
-        <tr th:each="empleado : ${listaEmpleados}">
+        <tr th:each="empleado : ${empleadosList}">
             <td th:text="${empleado.employeeId}" style="text-align: center"></td>
             <td th:text="${empleado.firstName}" style="text-align: center"></td>
             <td th:text="${empleado.lastName}" style="text-align: center"></td>
             <td th:text="${empleado.email}" style="text-align: center"></td>
             <td th:text="${empleado.salary}" style="text-align: center"></td>
-            <td><a class="btn btn-outline-info" th:href="@{'/empleado/info?id='+${empleado.employeeId}}" data-toggle="tooltip" data-placement="bottom" title="Editar">&#128295;</a></td>
-            <td><a class="btn btn-outline-danger" th:href="@{'/empleado/eliminar?id='+${empleado.employeeId}}" data-toggle="tooltip" data-placement="bottom" title="Borrar">&#128465;</a></td>
+            <td><a class="btn btn-outline-info" th:href="@{'/empleado/edicion?id='+${empleado.employeeId}}" data-toggle="tooltip" data-placement="bottom" title="Editar"></a></td>
+            <td><a class="btn btn-outline-danger" th:href="@{'/empleado/eliminar?id='+${empleado.employeeId}}" data-toggle="tooltip" data-placement="bottom" title="Borrar"></a></td>
         </tr>
 
         </tbody>
     </table>
-    <script src="<spring:url value="/resources/jquery/jquery-3.3.1.min.js" ></script>
+    <script src="<spring:url value="/resources/jquery/jquery-3.3.1.min.js" />"></script>
     <script src="<spring:url value="/resources/bootstrap/js/bootstrap.min.js" />"></script>
 </div>
 </body>
