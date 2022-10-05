@@ -26,13 +26,18 @@
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           </ul>
         </div>
+          <div class="col-auto">
+          <form method="post" th:action="@{/empleado/buscar}">
+              <input name="searchField" class="form-control mb-3" type="text" th:value="${searchField}" placeholder="Buscar"/>
+          </form>
+          </div>
       </nav>
       <div class="container">
         <p></p>
         <div class="row">
           <div class="col-10"><h2>Lista de Empleados</h2></div>
           <div class="col-2 text-right" >
-            <a class="btn btn-outline-info" th:href="@{'/empleado/nuevo'}">+ Añadir</a>
+            <a class="btn btn-outline-info" th:href="@{/empleado/nuevo}">+ Añadir</a>
           </div>
         </div>
 
