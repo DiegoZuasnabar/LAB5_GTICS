@@ -7,9 +7,11 @@ import com.pucp.lab5gtics.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.Optional;
 
@@ -62,6 +64,7 @@ public class EmployeeController {
     //Guardar Empleado
     @PostMapping("/save")
     public String saveEmployee(@ModelAttribute(value = "empleado") EmployeesEntity empleado,
+                               BindingResult bindingResult,
                                RedirectAttributes rttd) {
         if(empleado.getEmployeeId()==0){
             rttd.addFlashAttribute("msg", "Se creó exitosamente");
@@ -75,7 +78,7 @@ public class EmployeeController {
     //Nuevo Empleado
     @GetMapping(value = "/edicion")
     public String editNewEmpleado(Model model,
-                                  @ModelAttribute("empleado")EmployeesEntity empleado,
+                                  @ModelAttribute("empleado")@Valid EmployeesEntity empleado,
                                   @RequestParam("id") Integer id) {
         Optional<EmployeesEntity> opt=employeeRepository.findById(id);
         if(opt.isPresent()){
@@ -90,7 +93,7 @@ public class EmployeeController {
 
     @GetMapping(value = "/nuevo")
     public String editNewEmpleado(Model model,
-                                  @ModelAttribute("empleado")EmployeesEntity empleado){
+                                  @ModelAttribute("empleado") @Valid EmployeesEntity empleado){
         empleado.setSalary(new BigDecimal("2000.00"));
 
         model.addAttribute("empleado", empleado);

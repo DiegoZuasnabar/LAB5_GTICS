@@ -1,6 +1,8 @@
 package com.pucp.lab5gtics.entity;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -13,12 +15,15 @@ public class EmployeesEntity {
     @Column(name = "employee_id")
     private int employeeId;
     @Basic
+    @Size(max = 100, min = 3, message = "El tamaño debe estar entre 3 y 100 caracteres")
     @Column(name = "first_name")
     private String firstName;
     @Basic
     @Column(name = "last_name")
     private String lastName;
     @Basic
+    @Size(max = 50, message = "El correo no debe tener más de 50 caracteres")
+    @Email(message = "Formato incorrecto")
     @Column(name = "email")
     private String email;
     @Basic
@@ -31,9 +36,13 @@ public class EmployeesEntity {
     @Column(name = "hire_date")
     private Timestamp hireDate;
     @Basic
+    @NotNull(message = "Debe elegir una opción")
     @Column(name = "job_id")
     private String jobId;
     @Basic
+    @Digits(integer = 6, fraction = 2, message = "Numero de decimales no permitido")
+    @Positive(message = "Salario fuera del rango permitido")
+    @Max(value = 8500, message = "Salario fuera del rango permitido")
     @Column(name = "salary")
     private BigDecimal salary;
     @Basic
@@ -43,6 +52,7 @@ public class EmployeesEntity {
     @Column(name = "manager_id")
     private Integer managerId;
     @Basic
+    @NotNull(message = "Debe elegir una opción")
     @Column(name = "department_id")
     private Integer departmentId;
     @Basic
