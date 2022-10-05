@@ -26,15 +26,17 @@ public class EmployeeController {
                                @RequestParam(name = "search",required = false) String search,
                                @RequestParam(name = "order", required = false) Integer order,
                                RedirectAttributes attributes){
-        model.addAttribute("empleadosList",employeeRepository.findAll());
+        model.addAttribute("empleadosList",employeeRepository.listar());
         return "employee/list";
     }
 
 
     //Buscar Empleado
-    public String searchEmployee(Model model, @RequestParam(name = "search",required = false) String search, @RequestParam(name = "order", required = false) Integer order, RedirectAttributes attributes){
+    @PostMapping("/empleado/buscar")
+    public String searchEmployee(Model model, @RequestParam(name = "search",required = false) String search, @RequestParam(name = "order", required = false) Integer order,@RequestParam(name="searchField") String valor, RedirectAttributes attributes){
 
-        return "XXXXXX";
+        model.addAttribute("empleadosList",employeeRepository.buscar(valor));
+        return "employee/list";
     }
 
 
