@@ -28,7 +28,12 @@
     </div>
     <div class="col-auto">
         <form method="post" th:action="@{/empleado/buscar}">
-            <input name="searchField" class="form-control mb-3" type="text" th:value="${searchField}" placeholder="Buscar"/>
+            <table>
+                <tr>
+                    <td><input name="searchField" class="form-control mb-3" type="text" th:value="${searchField}" placeholder="Buscar"/></td>
+                    <td><input type="button" class="btn btn-outline-success">Buscar</input></td>
+                </tr>
+            </table>
         </form>
     </div>
 </nav>
@@ -61,14 +66,14 @@
         </thead>
         <tbody>
 
-        <tr th:each="empleado : ${empleadosList}">
-            <td th:text="${empleado.employeeId}" style="text-align: center"></td>
+        <tr th:each="empleado,i : ${empleadosList}">
+            <td th:text="${i.index + 1}" style="text-align: center"></td>
             <td th:text="${empleado.firstName}" style="text-align: center"></td>
             <td th:text="${empleado.lastName}" style="text-align: center"></td>
             <td th:text="${empleado.email}" style="text-align: center"></td>
             <td th:text="${empleado.salary}" style="text-align: center"></td>
-            <td><a class="btn btn-outline-info" th:href="@{'/empleado/edicion?id='+${empleado.employeeId}}" data-toggle="tooltip" data-placement="bottom" title="Editar"></a></td>
-            <td><a class="btn btn-outline-danger" th:href="@{'/empleado/eliminar?id='+${empleado.employeeId}}" data-toggle="tooltip" data-placement="bottom" title="Borrar"></a></td>
+            <td><a class="btn btn-outline-info" th:href="@{'/empleado/edicion?id='+${empleado.employeeId}}" data-toggle="tooltip" data-placement="bottom" title="Editar">&#128295;</a></td>
+            <td><a class="btn btn-outline-danger" th:href="@{'/empleado/eliminar?id='+${empleado.employeeId}}" data-toggle="tooltip" data-placement="bottom" title="Borrar">&#128465;</a></td>
         </tr>
 
         </tbody>

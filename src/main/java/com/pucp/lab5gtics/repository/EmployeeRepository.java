@@ -14,6 +14,9 @@ public interface EmployeeRepository extends JpaRepository<EmployeesEntity, Integ
            "order by first_name;",nativeQuery = true)
     List<EmployeesEntity> listar();
 
+    @Query(value="SELECT * FROM hr.employees order by first_name desc;",nativeQuery = true)
+    List<EmployeesEntity> listar2();
+
    @Query(value="SELECT * FROM hr.employees where (first_name like %?1% or last_name like %?1% );",nativeQuery = true)
     List<EmployeesEntity> buscar(String valor);
 

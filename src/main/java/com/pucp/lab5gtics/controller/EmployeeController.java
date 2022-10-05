@@ -27,16 +27,27 @@ public class EmployeeController {
                                @RequestParam(name = "search",required = false) String search,
                                @RequestParam(name = "order", required = false) Integer order,
                                RedirectAttributes attributes){
-        model.addAttribute("empleadosList",employeeRepository.listar());
+            if(order==null){
+                model.addAttribute("empleadosList",employeeRepository.listar());
+            }else{
+                if(order==2){
+                    model.addAttribute("empleadosList",employeeRepository.listar2());
+                }else{
+                    model.addAttribute("empleadosList",employeeRepository.listar());
+                }
+            }
+
+
         return "employee/list";
     }
 
 
     //Buscar Empleado
-    @PostMapping("/empleado/buscar")
+    @PostMapping("/buscar")
     public String searchEmployee(Model model, @RequestParam(name = "search",required = false) String search, @RequestParam(name = "order", required = false) Integer order,@RequestParam(name="searchField") String valor, RedirectAttributes attributes){
 
         model.addAttribute("empleadosList",employeeRepository.buscar(valor));
+        model.addAttribute("searchField",valor);
         return "employee/list";
     }
 
