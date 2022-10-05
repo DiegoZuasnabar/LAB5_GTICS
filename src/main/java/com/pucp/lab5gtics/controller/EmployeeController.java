@@ -48,26 +48,41 @@ public class EmployeeController {
     }
 
     //Guardar Empleado
-    //@...Mapping("")
-    public String saveEmployee(  ) {
-        //        COMPLETAR
-        return "XXXXXX";
+    @PostMapping("/save")
+    public String saveEmployee(@ModelAttribute(value = "empleado") EmployeesEntity empleado,
+                               RedirectAttributes rttd) {
+        if(empleado.getEmployeeId()==0){
+            rttd.addFlashAttribute("msg", "Se creó exitosamente");
+        }else{
+            rttd.addFlashAttribute("msg", "Se edito exitosamente");
+        }
+        employeeRepository.save(empleado);
+        return "redirect:/empleado/lista";
     }
 
     //Nuevo Empleado
     @GetMapping(value = "/edicion")
     public String editNewEmpleado(Model model,
                                   @ModelAttribute("empleado")EmployeesEntity empleado,
-                                  @RequestParam("id")int id) {
-
+                                  @RequestParam("id") Integer id) {
         Optional<EmployeesEntity> opt=employeeRepository.findById(id);
         if(opt.isPresent()){
             empleado= opt.get();
-            model.addAttribute("empleado", empleado);
         }
+        model.addAttribute("empleado", empleado);
         model.addAttribute("listaDepartments", departmentRepository.findAll());
         model.addAttribute("listaJobs", jobRepository.findAll());
         //        COMPLETAR
+        return "employee/Editar";
+    }
+
+    @GetMapping(value = "/nuevo")
+    public String editNewEmpleado(Model model,
+                                  @ModelAttribute("empleado")EmployeesEntity empleado){
+
+        model.addAttribute("empleado", empleado);
+        model.addAttribute("listaDepartments", departmentRepository.findAll());
+        model.addAttribute("listaJobs", jobRepository.findAll());
         return "employee/Editar";
     }
 }

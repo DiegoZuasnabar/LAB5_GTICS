@@ -18,9 +18,15 @@
 <main>
   <div class="container px-4 py-5">
     <h1 class="pb-2 mb-3 border-bottom">Información del Empleado</h1>
-    <form method="post" th:object="${empleado}" th:action="@{'/Empleado/save'}" class="mt-2">
+    <form method="post" th:object="${empleado}" th:action="@{/empleado/save}" class="mt-2">
       <div class="mb-3">
         <div class="mb-3">
+          <input type="hidden" th:field="*{employeeId}" />
+          <input type="hidden" th:field="*{phoneNumber}" />
+          <input type="hidden" th:field="*{hireDate}" th:if="${empleado.getEmployeeId()!=0}"/>
+          <input type="hidden" th:name="hireDate" value="1987-06-17 00:00:00" th:if="${empleado.getEmployeeId()==0}"/>
+          <input type="hidden" th:field="*{commissionPct}" />
+          <input type="hidden" th:field="*{managerId}" />
           <label for="nombre" class="form-label">Nombre</label>
           <input th:field="*{firstName}" type="text" class="form-control" name="nombre" id="nombre">
           <!--div class="invalid-feedback" th:if="${#fields.hasErrors('empleado.nombre')}"
@@ -45,7 +51,7 @@
       </div>
       <div class="mb-3">
         <label for="departamentoId" class="form-label">Departamento</label>
-        <select name="departamentoId" class="form-select" id="departamentoId">
+        <select th:name="departmentId" class="form-select" id="departamentoId">
           <option th:each="department : ${listaDepartments}"
                   th:selected="${department.departmentId==empleado.getDepartmentId()}"
                   th:value="${department.departmentId}" th:text="${department.departmentName}"></option>
@@ -54,7 +60,7 @@
 
       <div class="mb-3">
         <label for="trabajoID" class="form-label">Trabajo</label>
-        <select name="trabajoID" class="form-select" id="trabajoID">
+        <select th:name="jobId" class="form-select" id="trabajoID">
           <option  th:each="job : ${listaJobs}"
                    th:selected="${job.getJobId().equals(empleado.getJobId())}" th:value="${job.getJobId()}" th:text="${job.getJobTitle()}"></option>
         </select>
